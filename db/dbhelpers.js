@@ -3,6 +3,7 @@ const db = require('./');
 
 
 module.exports.getProductsHelper = (callback) => {
+  console.log('GET IS BEING CALLED')
   let queryString = `SELECT * FROM products`
   db.query(queryString, (err, results) => {
     if (err) {
@@ -25,6 +26,7 @@ module.exports.postProductsHelper = (data, callback) => {
 }
 
 module.exports.updateProductHelper = (id, data, callback) => {
+  console.log('PUT IS BEING CALLED')
   let queryString =`UPDATE products SET curr_bid=${data.curr_bid} WHERE id=${id};`;
   db.query(queryString, (err, results) => {
     if (err) {

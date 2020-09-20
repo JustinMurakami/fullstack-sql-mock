@@ -16,6 +16,15 @@ export default class ProductViewer extends React.Component {
     })
   }
 
+  handleSubmit(e, id, bid) {
+    e.preventDefault();
+    if (bid < this.props.currentItem.curr_bid) {
+      window.alert("NEW BID IS LESS THAN CURRENT BID.")
+    } else {
+      this.props.updateCurrentItem(id, bid)
+    }
+  }
+
   render(){
     return(
       <div className = 'product-viewer'>
@@ -25,7 +34,7 @@ export default class ProductViewer extends React.Component {
         <p>Current Bid: {this.props.currentItem.curr_bid}</p>
         <p>Original Posting Price: {this.props.currentItem.min_cost}</p>
         <p>Auction Ends In: {this.props.currentItem.ends_in} days!!!</p>
-        <form>
+        <form onSubmit={(e) => {this.handleSubmit(e, this.props.currentItem.id, this.state.newBid)}} >
           <label>
             New Bid:
             <input type="number" name="amount" onChange={(e) => {this.handleChange(e.target.value)}} />

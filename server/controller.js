@@ -5,6 +5,7 @@ const dbhelpers = require('../db/dbhelpers.js');
 
 const controller = {
   get: (req, res) => {
+    console.log(req.body);
     dbhelpers.getProductsHelper((err, results) =>{
       if (err) {
         res.status(400).send('error getting products')
@@ -25,6 +26,7 @@ const controller = {
   },
 
   put: (req, res) => {
+    console.log('PUT CONTROLLER IS CALLED')
     dbhelpers.updateProductHelper(req.params.id, req.body, (err, results) => {
       if (err) {
         res.status(400).send('error updating product')

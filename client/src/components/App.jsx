@@ -15,6 +15,7 @@ export default class App extends React.Component {
 
     this.getItems = this.getItems.bind(this);
     this.changeCurrentItem = this.changeCurrentItem.bind(this);
+    this.updateCurrentItem = this.updateCurrentItem.bind(this);
   }
 
   componentDidMount () {
@@ -37,6 +38,25 @@ export default class App extends React.Component {
     })
   }
 
+  updateCurrentItem(id, newBid) {
+    axios.put(`http://localhost:3000/products/${id}`, {
+      curr_bid: newBid
+    })
+    .then(() => {
+      var copyCurrentItem = Object.assign({}, this.state.currentItem);
+      copyCurrentItem.curr_bid = newBid;
+      this.setState({
+        currentItem: copyCurrentItem
+      })
+    })
+  }
+
+  // this.setState(prevState => {
+  //   let jasper = Object.assign({}, prevState.jasper);  // creating copy of state variable jasper
+  //   jasper.name = 'someothername';                     // update the name property, assign a new value
+  //   return { jasper };                                 // return new object jasper object
+  // })
+
   render(){
 
     return(
@@ -52,7 +72,7 @@ export default class App extends React.Component {
         </nav>
         <div className="row main-container">
           <div className="col-md-7 product-viewer-container">
-            <ProductViewer currentItem={this.state.currentItem}/>
+            <ProductViewer currentItem={this.state.currentItem}updateCurrentItem={this.updateCurrentItem}/>
           </div>
           <div className="col-md-5 product-list-container">
             <ProductList items={this.state.items} changeCurrentItem={this.changeCurrentItem}/>
