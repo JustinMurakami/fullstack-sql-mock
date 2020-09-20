@@ -4,7 +4,7 @@ import Products from './Products';
 const ProductList = (props) => {
   var products = props.items.map((item, index) => {
     return(
-      <Products key={index} image={item.image} item={item.item} curr_bid={item.curr_bid} ends_in={item.ends_in}/>
+      <Products key={index} item={item} changeCurrentItem={props.changeCurrentItem}/>
     )
   })
   return(

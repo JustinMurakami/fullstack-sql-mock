@@ -14,6 +14,7 @@ export default class App extends React.Component {
     }
 
     this.getItems = this.getItems.bind(this);
+    this.changeCurrentItem = this.changeCurrentItem.bind(this);
   }
 
   componentDidMount () {
@@ -27,6 +28,12 @@ export default class App extends React.Component {
         items: results.data,
         currentItem: results.data[0]
       })
+    })
+  }
+
+  changeCurrentItem(item) {
+    this.setState({
+      currentItem: item
     })
   }
 
@@ -48,7 +55,7 @@ export default class App extends React.Component {
             <ProductViewer />
           </div>
           <div className="col-md-5 product-list-container">
-            <ProductList items={this.state.items}/>
+            <ProductList items={this.state.items} changeCurrentItem={this.changeCurrentItem}/>
           </div>
         </div>
       </div>
