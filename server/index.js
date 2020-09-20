@@ -18,8 +18,6 @@
   server.use(morgan('dev'));
   server.use(cors());
 
-  server.use('/products', router)
-
-  server.use('/products/:_id', router)
+  server.use('/', router);
 
   server.listen(port, () => console.log('Connected to port: 3000'))

@@ -2,7 +2,17 @@
 const db = require('./');
 
 
-module.exports.getProductsHelper = () => {console.log('hello')}
+module.exports.getProductsHelper = (callback) => {
+  console.log('hello');
+  let queryString = `SELECT * FROM products`
+  db.query(queryString, (err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, results);
+    }
+  })
+}
 
 module.exports.postProductsHelper = () => {}
 
