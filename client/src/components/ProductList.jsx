@@ -9,6 +9,7 @@ const ProductList = (props) => {
   })
   return(
     <div className='product-list'>
+      <h2>PRODUCT LIST</h2>
       {products}
     </div>
   )
