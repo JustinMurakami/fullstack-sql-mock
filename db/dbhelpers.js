@@ -1,11 +1,11 @@
 // complete and fix the dbhelpers
+const db = require('./');
 
 
-getProductsHelper = () => 
+module.exports.getProductsHelper = () => {console.log('hello')}
 
-postProductsHelper = () => 
+module.exports.postProductsHelper = () => {}
 
-updateProductHelper = () => 
+module.exports.updateProductHelper = () => {}
 
-deleteProductHelper = () => 
-
+module.exports.deleteProductHelper = () => {}

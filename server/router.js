@@ -1,6 +1,7 @@
 // Router here
 // these routes are correct. there is no need to modify anything!
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
 const controller = require('./controller.js');
 
 router

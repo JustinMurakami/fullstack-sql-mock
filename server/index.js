@@ -5,7 +5,7 @@
   const morgan = require('morgan');
   const cors = require('cors');
   const path = require('path');
-  const router = require('./router');
+  const router = require('./router.js');
 
   const server = express();
   const port = 3000;
@@ -18,16 +18,8 @@
   server.use(morgan('dev'));
   server.use(cors());
 
-  server.get('/products', router.get)
-  })
+  server.use('/products', router)
 
-  server.post('/products', router.post)
-  })
-
-  server.put('/products/:_id', router.put)
-  })
-
-  server.delete('/products/:_id', router.delete)
-  })
+  server.use('/products/:_id', router)
 
   server.listen(port, () => console.log('Connected to port: 3000'))
