@@ -46,8 +46,9 @@ module.exports.deleteProductHelper = (id, callback) => {
   })
 }
 
-module.exports.getOne = (data, callback) => {
-  let queryString = `SELECT * FROM products WHERE item LIKE '%${data.searchedWord}%';`
+module.exports.getOne = (searchedWord, callback) => {
+  console.log('GETONE IS BEING CALLED')
+  let queryString = `SELECT * FROM products WHERE item LIKE '%${searchedWord}%';`
   db.query(queryString, (err, results) => {
     if (err) {
       callback(err);

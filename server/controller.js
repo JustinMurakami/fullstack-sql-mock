@@ -46,7 +46,8 @@ const controller = {
   },
 
   getOne: (req, res) => {
-    dbhelpers.getOne(req.body, (err, results) => {
+    console.log(req);
+    dbhelpers.getOne(req.params.searchedWord, (err, results) => {
       if (err) {
         res.status(400).send('error getting one result for search')
       } else {

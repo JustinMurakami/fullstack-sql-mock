@@ -19,6 +19,5 @@
   server.use(cors());
 
   server.use('/', router);
-  server.use('/:id', router);
 
   server.listen(port, () => console.log('Connected to port: 3000'))

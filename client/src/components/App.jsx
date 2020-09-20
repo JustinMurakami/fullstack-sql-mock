@@ -60,13 +60,20 @@ export default class App extends React.Component {
   // })
 
   search(searchedWord) {
-    axios.get('/products/search', {
-      searchedWord: searchedWord
-    })
+    console.log('SEARCH FUNCTION CALLED');
+    console.log('SEARCHED WORD IS', searchedWord)
+    axios.get(`http://localhost:3000/products/${searchedWord}`)
     .then((results) => {
-      this.setState({
-        searchResults: results.data
-      })
+      if (results.data.length === 0) {
+        window.alert('NO SEARCH RESULTS')
+      } else {
+        this.setState({
+          searchResults: results.data
+        });
+        this.setState({
+          currentItem: this.state.searchResults[0]
+        });
+      }
     })
   }
 
