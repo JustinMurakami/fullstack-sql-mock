@@ -10,12 +10,14 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       items: [],
-      currentItem: {}
+      currentItem: {},
+      searchResults: []
     }
 
     this.getItems = this.getItems.bind(this);
     this.changeCurrentItem = this.changeCurrentItem.bind(this);
     this.updateCurrentItem = this.updateCurrentItem.bind(this);
+    this.search = this.search.bind(this);
   }
 
   componentDidMount () {
@@ -57,6 +59,17 @@ export default class App extends React.Component {
   //   return { jasper };                                 // return new object jasper object
   // })
 
+  search(searchedWord) {
+    axios.get('/products/search', {
+      searchedWord: searchedWord
+    })
+    .then((results) => {
+      this.setState({
+        searchResults: results.data
+      })
+    })
+  }
+
   render(){
 
     return(
@@ -67,7 +80,7 @@ export default class App extends React.Component {
         </div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search />
+            <Search search={this.search} />
           </div>
         </nav>
         <div className="row main-container">

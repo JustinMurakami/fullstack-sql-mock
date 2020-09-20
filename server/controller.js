@@ -26,7 +26,6 @@ const controller = {
   },
 
   put: (req, res) => {
-    console.log('PUT CONTROLLER IS CALLED')
     dbhelpers.updateProductHelper(req.params.id, req.body, (err, results) => {
       if (err) {
         res.status(400).send('error updating product')
@@ -37,12 +36,21 @@ const controller = {
   },
 
   delete: (req, res) => {
-    console.log('THIS IS REQ', req);
-    dbhelpers.deleteProductHelper(req.params._id, (err, results) => {
+    dbhelpers.deleteProductHelper(req.params.id, (err, results) => {
       if (err) {
         res.status(400).send('error deleting product')
       } else {
         res.status(200).send(results)
+      }
+    })
+  },
+
+  getOne: (req, res) => {
+    dbhelpers.getOne(req.body, (err, results) => {
+      if (err) {
+        res.status(400).send('error getting one result for search')
+      } else {
+        res.status(200).send(results);
       }
     })
   }

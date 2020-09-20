@@ -14,4 +14,8 @@ router
   .put(controller.put)
   .delete(controller.delete)
 
+router
+  .route('/products/search')
+  .get(controller.getOne)
+
 module.exports = router

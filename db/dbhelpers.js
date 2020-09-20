@@ -3,7 +3,6 @@ const db = require('./');
 
 
 module.exports.getProductsHelper = (callback) => {
-  console.log('GET IS BEING CALLED')
   let queryString = `SELECT * FROM products`
   db.query(queryString, (err, results) => {
     if (err) {
@@ -26,7 +25,6 @@ module.exports.postProductsHelper = (data, callback) => {
 }
 
 module.exports.updateProductHelper = (id, data, callback) => {
-  console.log('PUT IS BEING CALLED')
   let queryString =`UPDATE products SET curr_bid=${data.curr_bid} WHERE id=${id};`;
   db.query(queryString, (err, results) => {
     if (err) {
@@ -38,7 +36,6 @@ module.exports.updateProductHelper = (id, data, callback) => {
 }
 
 module.exports.deleteProductHelper = (id, callback) => {
-  console.log('THIS IS ID', id);
   let queryString = `DELETE FROM products WHERE id=${id};`;
   db.query(queryString, (err, results) => {
     if (err) {
@@ -48,3 +45,16 @@ module.exports.deleteProductHelper = (id, callback) => {
     }
   })
 }
+
+module.exports.getOne = (data, callback) => {
+  let queryString = `SELECT * FROM products WHERE item LIKE '%${data.searchedWord}%';`
+  db.query(queryString, (err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, results);
+    }
+  })
+}
+
+//SELECT * FROM Persons WHERE FirstName LIKE '%la%'
