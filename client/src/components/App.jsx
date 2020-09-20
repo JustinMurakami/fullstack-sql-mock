@@ -13,6 +13,21 @@ export default class App extends React.Component {
       currentItem: {}
     }
 
+    this.getItems = this.getItems.bind(this);
+  }
+
+  componentDidMount () {
+    this.getItems()
+  }
+
+  getItems() {
+    axios.get('http://localhost:3000/products')
+    .then((results) => {
+      this.setState({
+        items: results.data,
+        currentItem: results.data[0]
+      })
+    })
   }
 
   render(){
