@@ -4,8 +4,16 @@ export default class ProductViewer extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      bid: ''
+      newBid: ''
     }
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(value) {
+    this.setState({
+      newBid: value
+    })
   }
 
   render(){
@@ -17,10 +25,19 @@ export default class ProductViewer extends React.Component {
         <p>Current Bid: {this.props.currentItem.curr_bid}</p>
         <p>Original Posting Price: {this.props.currentItem.min_cost}</p>
         <p>Auction Ends In: {this.props.currentItem.ends_in} days!!!</p>
+        <form>
+          <label>
+            New Bid:
+            <input type="number" name="amount" onChange={(e) => {this.handleChange(e.target.value)}} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
       </div>
     )
   }
 }
 
-//need to show image, item (description, current bid: info, original posting price: info, bid ends in: info days)
-//need form for new bid with submit button (value in state, on change handler, submit handler)
+
+//need form for new bid with submit button (newBid value in state, on change handler, submit handler)
+//on change, update state for 'bid'
+//on submit, if bid greater than currentItem current bid, send update to server, re-render current item (need a get one route, controller and dbhelper)
